@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Facts Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #76b5c5;
+            margin-bottom: 30px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .category {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .category:hover {
+            background-color: #3a3a3a;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .fact-display {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #e0e0e0;
+            min-height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Discover Fun Facts!</h1>
+        <div class="categories">
+            <div class="category" data-category="science"><i class="icon">&#128161;</i> Science</div>
+            <div class="category" data-category="history"><i class="icon">&#127963;</i> History</div>
+            <div class="category" data-category="sports"><i class="icon">&#9917;</i> Sports</div>
+            <div class="category" data-category="geography"><i class="icon">&#127759;</i> Geography</div>
+            <div class="category" data-category="technology"><i class="icon">&#128187;</i> Technology</div>
+        </div>
+        <div class="fact-display">
+            <p id="factDisplay">Your fact will appear here...</p>
+        </div>
+    </div>
+    <script>
+        const facts = {
+            science: [
+                "The speed of light is approximately 299,792 kilometers per second.",
+                "Water is the only substance that is found naturally in three forms: solid, liquid, and gas.",
+                "Humans share 50% of their DNA with bananas.",
+                "A day on Venus is longer than a year on Venus.",
+                "The Eiffel Tower can be 15 cm taller during the summer due to thermal expansion."
+            ],
+            history: [
+                "The Great Wall of China is not visible from space with the naked eye.",
+                "Cleopatra lived closer in time to the first Moon landing than to the construction of the Great Pyramid.",
+                "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after 38 minutes.",
+                "The first known civilization was the Sumerians in Mesopotamia around 3500 BC.",
+                "The Titanic was not the first ship to sink after hitting an iceberg."
+            ],
+            sports: [
+                "The Olympic Games were originally a religious festival in honor of Zeus.",
+                "Soccer is the most popular sport in the world, with over 4 billion fans.",
+                "The first modern Olympic Games were held in Athens, Greece, in 1896.",
+                "Basketball was invented in 1891 by Dr. James Naismith.",
+                "The fastest recorded tennis serve was 263 km/h (163.7 mph) by Sam Groth."
+            ],
+            geography: [
+                "Russia is the largest country in the world, covering over 17 million square kilometers.",
+                "Mount Everest is the highest mountain in the world, standing at 8,848 meters (29,029 feet).",
+                "The Amazon Rainforest produces more than 20% of the world's oxygen.",
+                "Africa is the second largest continent, covering about 30.2 million square kilometers.",
+                "Australia is both a country and a continent."
+            ],
+            technology: [
+                "The first computer virus was created in 1983 and was called 'Elk Cloner'.",
+                "The first smartphone was IBM's Simon Personal Communicator, released in 1994.",
+                "More than 90% of the world's currency is digital.",
+                "The first 1GB hard disk drive was announced in 1980, weighing over 500 pounds.",
+                "The world's first website is still online and can be visited at info.cern.ch."
+            ]
+        };
+
+        document.querySelectorAll('.category').forEach(category => {
+            category.addEventListener('click', function() {
+                const categoryType = this.getAttribute('data-category');
+                const factDisplay = document.getElementById('factDisplay');
+                const randomFact = facts[categoryType][Math.floor(Math.random() * facts[categoryType].length)];
+                factDisplay.textContent = randomFact;
+            });
+        });
+    </script>
+</body>
+</html>
